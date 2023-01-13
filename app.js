@@ -5,20 +5,17 @@ const readStream = fs.createReadStream(__dirname + "/cards.txt", {
 
 var fileNumber = 1,
   remainFromPreviousFile = "",
-  lastCommaLocation = -1;
-
-var result = {};
+  result = {};
 
 readStream.on("data", function (chunk) {
   let writeStream = fs.createWriteStream(__dirname + `/f${fileNumber}.txt`);
 
-  let writeToFile = "";
-  let textToProcess = remainFromPreviousFile + chunk.toString();
-  let allWords = [];
+  let writeToFile = "",
+    finalVersion = "",
+    allWords = [],
+    lastCommaLocation = -1,
+    textToProcess = remainFromPreviousFile + chunk.toString();
 
-  lastCommaLocation = -1;
-
-  let finalVersion = "";
   for (let i = 0; i < textToProcess.length; i++) {
     if (
       textToProcess[i].toLowerCase() != textToProcess[i].toUpperCase() ||
