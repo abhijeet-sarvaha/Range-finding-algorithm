@@ -58,6 +58,6 @@ readStream
 
     // console.log(result);
   })
-  .on("end", function (req, res) {
+  .on("end", function () {
     console.log(result);
   });
